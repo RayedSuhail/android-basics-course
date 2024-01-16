@@ -6,7 +6,7 @@
 }
 </style>
 
-# Android Basics with Compose Course [<img class="chain-link" src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Chain_link_icon.svg">](https://developer.android.com/courses/android-basics-compose/course)
+# Android Basics with Compose Course ([Link](https://developer.android.com/courses/android-basics-compose/course))
 
 ###### ***Please note that the README files may contain some text directly lifted from the course. This repository is just for tracking personal learning and note tracking***
 
