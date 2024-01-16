@@ -1,11 +1,3 @@
-<style>
-.chain-link {
-    transform: rotate(-45deg);
-    height: 32px;
-    filter: invert(44%) sepia(45%) saturate(7490%) hue-rotate(191deg) brightness(107%) contrast(106%);
-}
-</style>
-
 # Android Basics with Compose Course ([Link](https://developer.android.com/courses/android-basics-compose/course))
 
 ###### ***Please note that the README files may contain some text directly lifted from the course. This repository is just for tracking personal learning and note tracking***
