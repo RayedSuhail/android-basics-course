@@ -199,3 +199,118 @@ fun birthdayGreeting(name: String = "Rover", age: Int): String {
 ```
 
 #### For additional practice, check out the [Kotlin Basics track](https://hyperskill.org/tracks/18) in JetBrains Academy
+
+---
+
+## Setup Android Studio
+Install and set up Android Studio, so that you can create your first project and run it on a device or emulator.
+
+
+#### Download and Install Android Studio
+Quick installation guide for all systems
+
+#### Create your first android app
+Attempting to build an app that lets you customize your introduction! This project will use an empty template: New Project Phone and Tablet templates > Empty Activity template. Just rename project name as "Greeting Card" and then let it build.
+
+Click `Split` on the top right of Android Studio, this allows you to view both code and design. You can also click `Code` to view code only or click `Design` to view design only. You can see three panes:
+- The Project view shows the files and folders of your project
+- The Code view is where you edit code
+- The Design view is where you preview what your app looks like
+
+If the file heirarchy ever looks weird, check to make sure you are still in Android view. Look at the Code view of the `MainActivity.kt` file. Notice there are some automatically generated functions in this code, specifically the `onCreate()` and the `setContent()` functions. For Android apps, the `onCreate()` function is the entry point that calls other functions to build the user interface.
+
+The `setContent()` function within the `onCreate()` function is used to define your layout through composable functions. All functions marked with the `@Composable` annotation can be called from the `setContent()` function or from other Composable functions. The annotation tells the Kotlin compiler that this function is used by Jetpack Compose to generate the UI. The way to write `@Composable` functions:
+- You add the @Composable annotation before the function.
+- @Composable function names are capitalized.
+- @Composable functions can't return anything.
+
+```kt
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Text(text = "Hello $name!")
+}
+```
+
+The `GreetingPreview()` function is a cool feature that lets you see what your composable looks like without having to build your entire app. To enable a preview of a composable, annotate it with `@Composable` and `@Preview`. The `@Preview` annotation tells Android Studio that this composable should be shown in the design view of this file.
+
+To set a different background color for your introduction, you'll need to surround your text with a `Surface`. A `Surface` is a container that represents a section of UI where you can alter the appearance, such as the background color or border.
+
+In your code, the best practice is to keep your imports listed alphabetically and remove unused imports. To do this press Help on the top toolbar, type in optimize imports, and click on Optimize Imports.
+
+A `Modifier` is used to augment or decorate a composable. One modifier you can use is the padding modifier, which adds space around the element (in this case, adding space around the text). This is accomplished by using the `Modifier.padding()` function. 
+
+###### Your final MainActivity.kt will look like:
+```kt
+package com.example.greetingcard
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.example.greetingcard.ui.theme.GreetingCardTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            GreetingCardTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    Greeting("Android")
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Surface(color = Color.Cyan) {
+        Text(text = "Hi, my name is $name!", modifier = modifier.padding(24.dp))
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    GreetingCardTheme {
+        Greeting("Meghan")
+    }
+}
+```
+
+#### Run your first app on the Android Emulator
+To run an Android app in an emulator on your computer, you first create a virtual device. Follow the following steps:
+- In Android Studio, select Tools > Device Manager
+- Click Create virtual device
+- Select Phone as the category
+- Select a phone, such as the Pixel 5, and then click Next
+- If there's a download link next to S, click Download > Accept > Next > Finish. The presence of the download link indicates that the image isn't installed on your computer, in which case you must install the image before you can configure the virtual device. Expect the download to take some time to complete
+- In the Recommended tab, choose S as the version of Android to run on the virtual device
+- In the AVD Name field, enter a name for your AVD or use the default. Leave the rest of the fields unchanged
+- Click Finish
+- Close the Device Manager dialog
+
+Now you can run the app on the Android Emulator
+- Select the virtual device that you created from the dropdown menu at the top of the Android Studio window
+- Click the start button
+
+#### How to connect you Android device
+Learn how to connect your app in Android Studio to your physical Android device. First, you need to enable USB debugging on your device. Go to About Phone and tap Build number multiple times to enable Develper mode. In the Developer options, enable USB debuggin and connect your device to the computer. On Windows:
+- In Android Studio, click Tools > SDK Manager. The Preferences > Appearance & Behavior > System Settings > Android SDK dialog opens.
+- Click the SDK Tools tab.
+- Select Google USB Driver and then click OK.
+
+Once that is then, connect your device and allow debugging on your phone. Now you can launch apps on your device.
